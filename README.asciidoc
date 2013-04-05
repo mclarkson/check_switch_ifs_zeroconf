@@ -9,7 +9,7 @@ Probably only the community string and switch IP need to be set.
 
 Zero-conf since it compares ifAdminStatus (what state the net admin wants the interface to be in) with ifOperStatus (the state the interface is actually in.), which is set by the net admin on the cisco switch itself. This way no one can forget to update nagios when ports are enabled/disabled. Use in conjunction with other switch port checks.
 
-*plugin now shows the interface description field.*
+_This plugin now shows the interface description field._
 
 *Example output:*
 
