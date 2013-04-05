@@ -1,5 +1,5 @@
-NetBackup latest backup status check by Policy name
----------------------------------------------------
+Check Switch Interfaces - Zero configuration
+--------------------------------------------
 
 Written in bash - only snmpwalk (or snmpbulkwalk) is required.
 
