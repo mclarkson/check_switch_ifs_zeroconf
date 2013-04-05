@@ -11,12 +11,13 @@ Zero-conf since it compares ifAdminStatus (what state the net admin wants the in
 
 *plugin now shows the interface description field.*
 
-Example output:
+*Example output:*
 
+----
 CRITICAL: IFs down:  Ethernet1/6 (***Unused Port***), Ethernet1/20 (***vpc 200 Link to XX-XXX-7010-XX01 e8/1***)
+----
 
-
-MANUAL PAGE
+*MANUAL PAGE*
 
 ----
 $ ./check_switch_ifs_zeroconf -h
