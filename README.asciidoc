@@ -1,0 +1,62 @@
+NetBackup latest backup status check by Policy name
+---------------------------------------------------
+
+Written in bash - only snmpwalk (or snmpbulkwalk) is required.
+
+snmpbulkwalk is used by default. Edit the 'DEFAULTS' section of the script to change to snmpwalk if required.
+
+Probably only the community string and switch IP need to be set.
+
+Zero-conf since it compares ifAdminStatus (what state the net admin wants the interface to be in) with ifOperStatus (the state the interface is actually in.), which is set by the net admin on the cisco switch itself. This way no one can forget to update nagios when ports are enabled/disabled. Use in conjunction with other switch port checks.
+
+*plugin now shows the interface description field.*
+
+Example output:
+
+CRITICAL: IFs down:  Ethernet1/6 (***Unused Port***), Ethernet1/20 (***vpc 200 Link to XX-XXX-7010-XX01 e8/1***)
+
+
+MANUAL PAGE
+
+----
+$ ./check_switch_ifs_zeroconf -h
+
+check_switch_ifs_zeroconf - Zero-conf bulk interface checker.
+
+Usage: check_switch_ifs_zeroconf [-h] [-l] [-c SECRET]
+       [-f REGEX] [-F REGEX] host|IP
+
+ -h         :  Display this help text.
+ -v         :  Display the version of this script.
+ -l         :  List all available ports and their status.
+ -C SECRET  :  Community string.
+ -f REGEX   :  Inclusive regular expression (these).
+ -F REGEX   :  Exclusive regular expression (but not these).
+
+Check that interfaces are in the state that the network admin
+requested them to be in. For example, 'shutdown' interfaces
+should be down and 'no shutdown' interfaces should be up.
+
+Examples
+
+List all interfaces on the device:
+    check_switch_ifs_zeroconf -l -C secret 1.2.3.4
+
+List only Ethernet1/1/1 interfaces on the device:
+    check_switch_ifs_zeroconf -l -f Ethernet1/1/1$ -C secret 1.2.3.4
+
+List only Ethernet interfaces on the device:
+    check_switch_ifs_zeroconf -l -f Ethernet -C secret 1.2.3.4
+
+Check all interface on the device:
+    check_switch_ifs_zeroconf -C secret 1.2.3.4
+
+Check all interfaces on the device except vlan and port channels:
+    check_switch_ifs_zeroconf -C secret -F 'vlan|port' 1.2.3.4
+
+NOTE: Do not use this plugin to check individual interfaces.
+      It is for bulk checks only - individual checks will be slow
+
+NOTE: Searches with -f and -F are case-insensitive
+----
+
