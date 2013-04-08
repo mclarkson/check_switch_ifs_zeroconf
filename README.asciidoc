@@ -21,7 +21,7 @@ _This plugin now shows the interface description field._
 Example:
 
 ----
-wget https://raw.github.com/mclarkson/check_switch_module/master/check_switch_ifs_zeroconf
+wget https://raw.github.com/mclarkson/check_switch_ifs_zeroconf/master/check_switch_ifs_zeroconf
 chmod +x check_switch_ifs_zeroconf
 mv check_switch_ifs_zeroconf /usr/lib64/nagios/plugins/
 ----
